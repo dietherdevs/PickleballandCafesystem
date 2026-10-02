@@ -1,0 +1,10 @@
+{
+  "description": "Streamline bookings and management for a premium pickleball facility and café, enhancing user experience with intuitive navigation and real-time updates.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

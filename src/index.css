@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Figtree:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+@import 'tailwindcss';
+
+/* ---------- Design tokens ---------- */
+@theme {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Figtree', system-ui, sans-serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+
+  --color-cream: #f5efe2;
+  --color-paper: #fbf8f0;
+  --color-sand: #e9dfcb;
+  --color-line: #d9cdb5;
+  --color-edge: #8a7b64;
+  --color-forest: #2c4435;
+  --color-moss: #4f6b45;
+  --color-sage: #d3dcc1;
+  --color-bark: #5a4331;
+  --color-clay: #a24e2a;
+  --color-ink: #26231f;
+  --color-ink-soft: #5b544a;
+
+  --color-st-pending-bg: #f3e3b8;
+  --color-st-pending: #6e4600;
+  --color-st-confirmed-bg: #d3dcc1;
+  --color-st-confirmed: #243b2c;
+  --color-st-checked-bg: #cfe3df;
+  --color-st-checked: #164a4a;
+  --color-st-done-bg: #e2d8c3;
+  --color-st-done: #3a342c;
+  --color-st-cancel-bg: #f0d5cb;
+  --color-st-cancel: #7e2a17;
+  --color-st-noshow-bg: #e6d6e0;
+  --color-st-noshow: #52304a;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 32px;
+
+  --shadow-card: 0 1px 0 rgb(38 35 31 / 0.04), 0 10px 28px -16px rgb(38 35 31 / 0.22);
+  --shadow-pop: 0 28px 70px -24px rgb(38 35 31 / 0.4);
+}
+
+@layer base {
+  html {
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  body {
+    min-height: 100vh;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-clay);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-sand);
+  }
+  ::selection {
+    background: var(--color-sage);
+    color: var(--color-forest);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    * {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+@utility display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.028em;
+  line-height: 0.98;
+  font-variation-settings: 'opsz' 144;
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.16em] text-bark;
+  }
+  .btn {
+    @apply inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-md px-5 py-2.5 text-center text-[0.8rem] font-bold uppercase tracking-[0.09em] no-underline transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-lg {
+    @apply min-h-14 px-7 text-sm;
+  }
+  .btn-primary {
+    @apply bg-forest text-cream hover:bg-moss disabled:hover:bg-forest;
+  }
+  .btn-accent {
+    @apply bg-clay text-white hover:bg-[#8a3f20] disabled:hover:bg-clay;
+  }
+  .btn-secondary {
+    @apply border-2 border-forest bg-transparent text-forest hover:bg-forest hover:text-cream;
+  }
+  .btn-ghost {
+    @apply px-3 text-forest hover:bg-sand;
+  }
+  .btn-danger {
+    @apply border-2 border-st-cancel bg-transparent text-st-cancel hover:bg-st-cancel hover:text-white;
+  }
+  .btn-on-dark {
+    @apply bg-cream text-forest hover:bg-sand;
+  }
+  .input {
+    @apply block min-h-11 w-full rounded-md border border-edge bg-paper px-3.5 py-2.5 text-base text-ink placeholder:text-ink-soft/80 disabled:bg-sand disabled:text-ink-soft aria-[invalid=true]:border-2 aria-[invalid=true]:border-st-cancel;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-semibold text-ink;
+  }
+  .card {
+    @apply rounded-lg border border-line bg-paper shadow-card;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-xs font-bold tracking-wide;
+  }
+  .page-x {
+    @apply mx-auto w-full max-w-[1200px] px-5 md:px-8;
+  }
+  .hatch {
+    background-image: repeating-linear-gradient(135deg, transparent 0 6px, rgb(90 67 49 / 0.14) 6px 7px);
+  }
+}
+
+/* quiet scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
